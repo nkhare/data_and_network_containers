@@ -8,6 +8,9 @@ image-attribution: wasabicube
 image-attribution-link: http://www.flickr.com/photos/wasabicube/346461113/
 ---
 
+<script type="text/javascript" src="https://asciinema.org/a/14.js" id="asciicast-14" async></script>
+
+
 ## Ingredients
 
 * [Shortcrust pastry](shortcrust-pastry.html)
