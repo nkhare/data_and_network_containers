@@ -1,4 +1,6 @@
 name: Neependra Khare
 markdown: Kramdown
-highlighter: true
+highlighter: pygments
 baseurl: /linuxconeu
+extensions: [fenced_code_blocks]
+
