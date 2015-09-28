@@ -23,6 +23,20 @@ $ docker ps
 $ docker exec -it <ID> ip a
 ~~~
 
+<script type="text/javascript" src="https://asciinema.org/a/26873.js" id="asciicast-26873" async></script>
+~~~
+$ vagrant ssh labvm-1
+$ sudo -s
+$ docker run -itd --name web centos bash
+$ docker run -itd --name db mysql bash
+$ brctl-show docker0
+$ iptabales -t nat -n -L POSTROUTING
+$ docker ps
+$ docker exec -it web bash
+$ tracepath redhat.com
+~~~
+
+
 ### --net=host
 <script type="text/javascript" src="https://asciinema.org/a/26811.js" id="asciicast-26811" async></script>
 
@@ -58,3 +72,25 @@ $ ip adocker run -it --net=none  centos bash
 $ ip a
 ~~~
 
+
+## Accessting the container from outside world 
+### In case of --net=host, container can can be accessed through host IP
+
+<script type="text/javascript" src="https://asciinema.org/a/26922.js" id="asciicast-26922" async></script>
+
+~~~
+$ vagrant ssh labvm-1
+$ sudo -s
+$ docker run -d  -e MYSQL_ROOT_PASSWORD=my-secret-pw  --name=db mysql
+$ docker ps
+$ docker inspect --format='{{.NetworkSettings.IPAddress}}' db
+$ telnet <IP> 3306
+$ telnet localhost 3306
+$ docker run -d  -e MYSQL_ROOT_PASSWORD=my-secret-pw  --name=db1 -P 3306 mysql
+$ docker ps 
+$ tenet localhost <PORT>
+$ docker run -d  -e MYSQL_ROOT_PASSWORD=my-secret-pw  --name=db2 -p 3306:3306 mysql
+$ docker ps
+$ telnet localhost 3306
+$ iptables -t nat -n -L  DOCKER
+~~~
