@@ -21,3 +21,5 @@ libnetwork project will follow Docker and Linux philosophy of developing small, 
 
 Replace the networking subsystem of Docker Engine, with libnetwork
 https://github.com/docker/libnetwork/blob/master/ROADMAP.md#project-planning
+
+<script type="text/javascript" src="https://asciinema.org/a/26992.js" id="asciicast-26992" async></script>

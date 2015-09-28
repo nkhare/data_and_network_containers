@@ -12,7 +12,7 @@ $labvm_ips = $num_labvm.times.collect { |n| $labvm_ip_base + "#{n+3}" }
 #end
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "linuxcon"
+  config.vm.box = "linuxcon6"
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.ssh.private_key_path = "~/.vagrant.d/insecure_private_key"
   config.ssh.insert_key = false
@@ -23,7 +23,7 @@ Vagrant.configure(2) do |config|
       labvm_index = n+1
       labvm_ip = $labvm_ips[n]
       labvm.vm.network "private_network", ip: "#{labvm_ip}"
-      labvm.vm.hostname = "labvm-#{labvm_index}"
+      labvm.vm.hostname = "lab-vm-#{labvm_index}"
     end
   end
 end
