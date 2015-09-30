@@ -9,7 +9,7 @@ markdown: redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 
-url: http://nkhare.github.io/linuxconeu/
+url: http://nkhare.github.io/data_and_network_containers
 permalink: /:year/:month/:title/
 owner:
     name: Neependra Khare
