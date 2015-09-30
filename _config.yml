@@ -1,6 +1,23 @@
-name: Neependra Khare
-markdown: Kramdown
-highlighter: pygments
-baseurl: /linuxconeu
-extensions: [fenced_code_blocks]
+name: LinuxCon 2015
+description:  Data and Network Management for Containers
 
+sass:
+  sass_dir: assets/css/_sass
+  style: :compressed
+
+markdown: redcarpet
+redcarpet:
+  extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+
+url: http://127.0.0.1:4000/
+permalink: /:year/:month/:title/
+owner:
+    name: Neependra Khare
+    twitter: neependra
+    github: nkhare
+    disqus_shortname: #
+
+ga_id: #
+ga_username: #
+
+timezone: Africa/Accra

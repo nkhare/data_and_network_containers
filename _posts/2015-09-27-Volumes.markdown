@@ -1,0 +1,68 @@
+---
+layout: post
+date: 2015-09-27
+comments: true
+archive: false
+title: volumes
+---
+
+## Data Volumes  
+
+### Creating volumes
+<script type="text/javascript" src="https://asciinema.org/a/27046.js" id="asciicast-27046" async></script>
+
+~~~
+vagrant ssh labvm-1
+sudo -s
+docker run -idt -v /data --name centos1 centos bash
+docker run -idt -v /data -v /code --name centos2 centos bash
+docker ps
+docker inspect -f “{{ .Config.Volumes }}” centos2
+docker inspect -f "{{ .Mounts }}" centos2
+~~~
+
+### Mounting host directory inside container
+<script type="text/javascript" src="https://asciinema.org/a/27047.js" id="asciicast-27047" async></script>
+
+~~~
+vagrant ssh labvm-1
+sudo -s
+mkdir -p ./tmp/dataHost
+date > /tmp/dataHost/date
+docker run -it -v  /tmp/dataHost: /data --name centos3 centos bash
+.. cd /data 
+ls 
+touch file1
+CTRL+D
+ls /tmp/dataHost
+
+docker run -it -v  /tmp/dataHost: /data:ro --name centos4 centos bash
+.. cd /data 
+touch file2
+~~~
+
+## Data Volume Plugins
+
+<script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async></script>
+
+~~~
+agrant ssh labvm-1
+sudo -s
+docker run -d -v /data --name data_container centos echo “data volume container”
+docker run -itd --volumes-from data_container --name client1 centos bash
+docker inspect -f “{{ .Config.Volumes }}” client1	
+docker inspect -f “{{ .Mounts }}” client1
+docker exec -it client1 bash 
+ls /
+touch /data/file1
+CTRL + D
+ls /var/lib/docker/vfs/………..
+docker run -it --volumes-from data_container --name client2 centos bash
+ls /data
+touch /data/file2
+CTRL + D
+ls /var/lib/docker/vfs/………..
+docker exec -it client1 bash 
+ls /data
+
+~~~
