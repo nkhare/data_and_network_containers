@@ -9,7 +9,6 @@ layout: default
                 {% if site.owner.name %}
                 By {{site.owner.name}},
                 {% endif %}
-    			<time class="timeago" datetime="{{ page.date }}">{{ page.date |  date: "%A %-d %B %Y" }}</time>,
     			<a href="{{ page.url | prepend: site.url }}#disqus_thread">0 <i class="fa fa-comments-o fa-lg"></i></a>
     			comments.
     		</div>
