@@ -13,6 +13,7 @@ url: http://nkhare.github.io/data_and_network_containers
 permalink: /:year/:month/:title/
 owner:
     name: Neependra Khare
+    website: www.neependra.net
     twitter: neependra
     github: nkhare
     disqus_shortname: #
