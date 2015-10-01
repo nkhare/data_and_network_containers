@@ -3,23 +3,24 @@ layout: post
 date: 2015-09-29
 comments: true
 archive: false
-title: OverLay Network
 title: Setup
 ---
 
+To have the self contained and easy to setup lab environment, I have create the Vagrant Box and setup labs around that. Each lab is consist of some theory, instructions and recording of the terminal, while running those instructions.  
+
 ## Requirement 
 
-1. Download and setup [VirtualBox **5.0**](https://www.virtualbox.org/wiki/Downloads)
+- Download and setup [VirtualBox **5.0**](https://www.virtualbox.org/wiki/Downloads)
 
-2. Download and setup [Vagrant](https://www.vagrantup.com/downloads.html)
+- Download and setup [Vagrant](https://www.vagrantup.com/downloads.html)
 
-3. Get the Vagrant file
+- Get the Vagrant file
 
 ```
 wget https://raw.githubusercontent.com/nkhare/data_and_network_containers/gh-pages/Vagrantfile
 ```
 
-4. Start the VMS
+- Start the VMS
 
 ```
 $ vagrant up
@@ -32,7 +33,7 @@ VM, please set **NUM_LABVMS** environment variable to 1
 export NUM_LABVMS=1
 ```
 
-5. Check the status of VMS *vagrant status*
+- Check the status of VMS *vagrant status*
 
 ```
 $ vagrant status
