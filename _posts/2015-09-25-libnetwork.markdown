@@ -18,6 +18,8 @@ Libcontainer would then use this information to create the necessary networking 
 This namespace would then be used when the container is started.
 https://github.com/docker/libnetwork/blob/master/docs/legacy.md
 
+<iframe src="//www.slideshare.net/slideshow/embed_code/key/b4sWkoqbwubDMR?startSlide=11" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe> <div style="margin-bottom:5px"> <strong> <a href="//www.slideshare.net/Docker/networking-breakout-v03" title="Docker Online Meetup #22: Docker Networking" target="_blank">Docker Online Meetup #22: Docker Networking</a> </strong> from <strong><a href="//www.slideshare.net/Docker" target="_blank">Docker, Inc.</a></strong> </div>
+
 
 libnetwork project will follow Docker and Linux philosophy of developing small, highly modular and composable tools that works well independently. Libnetwork aims to satisfy that composable need for Networking in Containers.
 
