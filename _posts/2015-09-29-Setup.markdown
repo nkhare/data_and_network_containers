@@ -6,7 +6,7 @@ archive: false
 title: Setup
 ---
 
-To have the self contained and easy to setup lab environment, I have create the Vagrant Box and setup labs around that. Each lab is consist of some theory, instructions and recording of the terminal, while running those instructions.  
+To have the self contained and easy to setup lab environment, I have created the Vagrant Box and setup labs around that. Each lab is consist of some theory, instructions and recording of the terminal, while running those instructions.  
 
 ## Requirement 
 
