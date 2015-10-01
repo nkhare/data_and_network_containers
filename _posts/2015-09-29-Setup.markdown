@@ -9,5 +9,38 @@ title: Setup
 
 ## Requirement 
 
+1. Download and setup VirtualBox **5.0**
+//www.virtualbox.org/wiki/Downloadsate: 2015-09-22
+
+2. Download and setup Vagrant
+https://www.vagrantup.com/downloads.html
+
+3. Get the Vagrant file
+```
+wget https://raw.githubusercontent.com/nkhare/data_and_network_containers/gh-pages/Vagrantfile
+```
+
+4. Start the VMS
+```
+$ vagrant up
+```
+
+By detault Vagrant would start 2 VMs, as we need them in few labs. If you just want to start one
+VM, please set **NUM_LABVMS** environment variable to 1
+```
+export NUM_LABVMS=1
+```
+
+5. Check the status of VMS *vagrant status*
+```
+$ vagrant status
+Current machine states:
+
+labvm-1                   running (virtualbox)
+labvm-2                   running (virtualbox)
+```
+
+
+
 ## 
 
