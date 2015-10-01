@@ -3,7 +3,7 @@ layout: post
 date: 2015-09-27
 comments: true
 archive: false
-title: docker networking
+title: Docker networking
 ---
 
 ## What happens by default

@@ -1,7 +1,7 @@
 ---
 layout: post
 date: 2015-09-25
-title: Docker Libnetwork
+title: Libnetwork
 comments: true
 archive: false
 ---
