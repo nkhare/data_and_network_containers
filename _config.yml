@@ -9,8 +9,8 @@ markdown: redcarpet
 redcarpet:
   extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
 
-#url: http://127.0.0.1:4000
-url: http://nkhare.github.io/data_and_network_containers
+url: http://127.0.0.1:4000
+#url: http://nkhare.github.io/data_and_network_containers
 permalink: /:title/
 owner:
     name: Neependra Khare

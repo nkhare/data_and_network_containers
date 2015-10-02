@@ -3,7 +3,7 @@ layout: post
 date: 2015-09-27
 comments: true
 archive: false
-title: Docker networking
+title: Docker Networking
 ---
 
 ## What happens by default
@@ -96,3 +96,11 @@ $ docker ps
 $ telnet localhost 3306
 $ iptables -t nat -n -L  DOCKER
 ~~~
+
+
+Other examples
+$ docker run -i -d -p 192.168.1.10::22 --name f20 fedora /bin/bash
+
+We can  bind multiple ports on container to hosts ports like following:-
+
+$  docker run -d -i -p 5000:22 -p 8080:80 --name f20 fedora /bin/bash
