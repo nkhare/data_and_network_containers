@@ -6,6 +6,8 @@ archive: false
 title: Docker Networking
 ---
 
+In this section we are going to look at state of Networking with current Docker release 1.8. 
+
 ## What happens by default
 <script type="text/javascript" src="https://asciinema.org/a/26765.js" id="asciicast-26765" data-size="small" async></script>
 

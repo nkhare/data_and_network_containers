@@ -18,13 +18,28 @@ I am covering some of the basics here. More details can be found in the free sam
 Docker Client Server Architecture
 
 ### Namespaces
+- *pid*
+- *net*
+- *ipc*
+- *mnt*
+- *uts*
+- *user*
 
 ### CGroups
+For resource limitations and accounting for container SELinux/AppArmor
 
-### SELinux/AppArmor
+### Union File-System
+- *AUFS*
+- *btrfs*
+- *vfs*
+- *Device Mapper*
 
-## Containers
 
+## Docker Architecture
+<a href="Docker Architecture"><img src="https://docs.docker.com/article-img/architecture.svg" align="center" height="400" width="600" ></a>
+
+ 
+##  Basic Container Operation
 <script type="text/javascript" src="https://asciinema.org/a/27188.js" id="asciicast-27188" async></script>
 
 - Make sure you have setup ready, as mentioned in earlier section   
@@ -100,22 +115,9 @@ $ ps aux
 docker inspect centos3
 ```
 
-## images
+##  Basic Image Operation
 - Pulling an image
-
-docker pull fedora
-
 - Creating an image from container
-
-docker ps
-docker commit 
-
 - Deleting an image
-
-docker rmi 
-
 - Exporting/importing an image
-
-docker 
-
 - Building image from Dockerfile

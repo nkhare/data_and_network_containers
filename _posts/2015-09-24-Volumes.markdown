@@ -6,6 +6,8 @@ archive: false
 title: Volumes
 ---
 
+In this section we are going to look *Data Volumes* and *Data Volume Containers*, which allows us to have Data outside the containers.   
+
 ## Data Volumes  
 
 ### Creating volumes
@@ -41,7 +43,7 @@ docker run -it -v  /tmp/dataHost: /data:ro --name centos4 centos bash
 touch file2
 ~~~
 
-## Data Volume Plugins
+## Data Volume Containers
 
 <script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async></script>
 
