@@ -20,7 +20,7 @@ To have the self contained and easy to setup lab environment, I have created the
 wget https://raw.githubusercontent.com/nkhare/data_and_network_containers/gh-pages/Vagrantfile
 ```
 
-- Start the VMS
+- Start the VMs
 
 ```
 $ vagrant up
