@@ -29,7 +29,7 @@ libnetwork project will follow Docker and Linux philosophy of developing small, 
 Replace the networking subsystem of Docker Engine, with libnetwork
 https://github.com/docker/libnetwork/blob/master/ROADMAP.md#project-planning
 
-<script type="text/javascript" src="https://asciinema.org/a/26992.js" id="asciicast-26992" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26992.js" id="asciicast-26992" async  data-theme="solarized-dark"></script>
 ~~~
 [root@lab-vm-1 ~] iptables -F; systemctl stop docker
 [root@lab-vm-1 ~] ./consul agent -server -bootstrap -data-dir /tmp/consul -bind=192.168.100.23> /dev/null 2>&1 &
@@ -50,7 +50,7 @@ ping svc1
 [root@lab-vm-1 ~]# tcpdump -i eth1 
 ~~~
 
-<script type="text/javascript" src="https://asciinema.org/a/26993.js" id="asciicast-26993" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26993.js" id="asciicast-26993" async  data-theme="solarized-dark"></script>
 
 ~~~
 [root@lab-vm-1 ~] ./docker-latest network ls

@@ -43,7 +43,7 @@ For resource limitations and accounting for container SELinux/AppArmor
 
  
 ##  Basic Container Operations
-<script type="text/javascript" src="https://asciinema.org/a/27188.js" id="asciicast-27188" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/27188.js" id="asciicast-27188" async data-theme="solarized-dark"></script>
 
 - Make sure you have setup ready, as mentioned in earlier section   
 
@@ -120,7 +120,7 @@ docker inspect centos3
 
 ##  Basic Image Operation
 
-<script type="text/javascript" src="https://asciinema.org/a/27244.js" id="asciicast-27244" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/27244.js" id="asciicast-27244" async data-theme="solarized-dark"></script>
 
 - Pulling an image
 

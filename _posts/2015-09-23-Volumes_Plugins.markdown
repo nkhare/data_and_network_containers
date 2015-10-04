@@ -8,7 +8,7 @@ title: Volume Plugins
 
 With Docker Volume Plugins we can enable container to access external storage natively. We would see an example of [Gluster Volume plugin](https://github.com/calavera/docker-volume-glusterfs).
 
-<script type="text/javascript" src="https://asciinema.org/a/27058.js" id="asciicast-27058" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/27058.js" id="asciicast-27058" async  data-theme="solarized-dark"></script>
 
 ~~~
 vagrant ssh labvm-1

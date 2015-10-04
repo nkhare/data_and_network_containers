@@ -9,7 +9,7 @@ title: Docker Networking
 In this section we are going to look at state of Networking with current Docker release 1.8. 
 
 ## What happens by default
-<script type="text/javascript" src="https://asciinema.org/a/26765.js" id="asciicast-26765" data-size="small" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26765.js" id="asciicast-26765" data-size="small" async  data-theme="solarized-dark"></script>
 
 
 ## Networking options
@@ -27,7 +27,7 @@ $ docker ps
 $ docker exec -it <ID> ip a
 ~~~
 
-<script type="text/javascript" src="https://asciinema.org/a/26873.js" id="asciicast-26873" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26873.js" id="asciicast-26873" async  data-theme="solarized-dark"></script>
 ~~~
 $ vagrant ssh labvm-1
 $ sudo -s
@@ -42,7 +42,7 @@ $ tracepath redhat.com
 
 
 ### --net=host
-<script type="text/javascript" src="https://asciinema.org/a/26811.js" id="asciicast-26811" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26811.js" id="asciicast-26811" async  data-theme="solarized-dark"></script>
 
 ~~~
 $ vagrant ssh labvm-1
@@ -54,7 +54,7 @@ $ ip a
 ~~~
 
 ### --net=container:NAME_or_ID
-<script type="text/javascript" src="https://asciinema.org/a/26813.js" id="asciicast-26813" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26813.js" id="asciicast-26813" async  data-theme="solarized-dark"></script>
 
 ~~~
 $ vagrant ssh labvm-1
@@ -67,7 +67,7 @@ $ ip a
 
 
 ### --net=none
-<script type="text/javascript" src="https://asciinema.org/a/26814.js" id="asciicast-26814" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26814.js" id="asciicast-26814" async  data-theme="solarized-dark"></script>
 
 ~~~
 $ vagrant ssh labvm-1
@@ -77,10 +77,10 @@ $ ip a
 ~~~
 
 
-## Accessting the container from outside world 
+## Accessing the container from outside world 
 ### In case of --net=host, container can can be accessed through host IP
 
-<script type="text/javascript" src="https://asciinema.org/a/26922.js" id="asciicast-26922" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/26922.js" id="asciicast-26922" async  data-theme="solarized-dark"></script>
 
 ~~~
 $ vagrant ssh labvm-1
@@ -101,8 +101,13 @@ $ iptables -t nat -n -L  DOCKER
 
 
 Other examples
+
+```
 $ docker run -i -d -p 192.168.1.10::22 --name f20 fedora /bin/bash
+```
 
 We can  bind multiple ports on container to hosts ports like following:-
 
+```
 $  docker run -d -i -p 5000:22 -p 8080:80 --name f20 fedora /bin/bash
+```

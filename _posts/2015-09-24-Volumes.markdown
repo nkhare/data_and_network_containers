@@ -45,7 +45,7 @@ touch file2
 
 ## Data Volume Containers
 
-<script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async></script>
+<script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async  data-theme="solarized-dark"></script>
 
 ~~~
 agrant ssh labvm-1
