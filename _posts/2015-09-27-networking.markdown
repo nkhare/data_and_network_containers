@@ -23,6 +23,7 @@ Docker has some global network configuration options which effects all the conta
 Visit [Docker Documentation](https://docs.docker.com/articles/networking/) for more details.
 
 And the per conatainer options are:-
+
 - *-h HOSTNAME or --hostname=HOSTNAME* to set the hostname for container
 - *--link=CONTAINER_NAME_or_ID:ALIAS*  to link the container with other contaiiners
 - *--net=bridge|none|container:NAME_or_ID|host* to connect the container with differnt namespaces
