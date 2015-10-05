@@ -6,9 +6,26 @@ archive: false
 title: Volumes
 ---
 
-In this section we are going to look *Data Volumes* and *Data Volume Containers*, which allows us to have Data outside the containers.   
+In this section we are going to look *Data Volumes* and *Data Volume Containers*, which allows contaiers to have external storage. There are two primary ways to mannage data for containers:-   
 
-## Data Volumes  
+###  Data Volumes
+
+From the Docker documentation (https://docs.docker.com/userguide/dockervolumes/), a data volume is a specially-designated directory within one or more containers that bypasses the Union File System to provide several useful features for persistent or shared data: 
+
+- Volumes are initialized when a container is created. If the container's base image contains data at the specified mount point, that data is copied into the new volume.
+- Data volumes can be shared and reused between containers
+- Changes to a data volume are made directly
+- Changes to a data volume will not be included when you update an image 
+- Volumes persist until no containers use them 
+
+###  Data Volume containers
+
+As a volume persist until no container uses it, we can use volume to share persistent data between containers. So, we can create named volume container and mount the data to other container. 
+
+
+## **Data Volumes**
+
+Let's create some volumes and inspect them. 
 
 ### Creating volumes
 <script type="text/javascript" src="https://asciinema.org/a/27046.js" id="asciicast-27046" async></script>
@@ -24,6 +41,9 @@ docker inspect -f "{{ .Mounts }}" centos2
 ~~~
 
 ### Mounting host directory inside container
+ 
+For this demo, we would mount the host directory, inside the container in *rw* and *ro* mode.
+
 <script type="text/javascript" src="https://asciinema.org/a/27047.js" id="asciicast-27047" async></script>
 
 ~~~
@@ -31,24 +51,25 @@ vagrant ssh labvm-1
 sudo -s
 mkdir -p ./tmp/dataHost
 date > /tmp/dataHost/date
-docker run -it -v  /tmp/dataHost: /data --name centos3 centos bash
+docker run -it -v  /tmp/dataHost:/data --name centos3 centos bash
 .. cd /data 
 ls 
 touch file1
 CTRL+D
 ls /tmp/dataHost
-
-docker run -it -v  /tmp/dataHost: /data:ro --name centos4 centos bash
+docker run -it -v  /tmp/dataHost:/data:ro --name centos4 centos bash
 .. cd /data 
 touch file2
 ~~~
 
-## Data Volume Containers
+## **Data Volume Containers**
+
+For this demo, we would first run a contaier with some volume (*/data*) in background. Then we would create two other contaiers and get the earlier created volume with *--volume-from* option  inside them. Once we make changes in any of the mounted end-point, it should be reflected at other mount location as well. 
 
 <script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async  data-theme="solarized-dark"></script>
 
 ~~~
-agrant ssh labvm-1
+vagrant ssh labvm-1
 sudo -s
 docker run -d -v /data --name data_container centos echo “data volume container”
 docker run -itd --volumes-from data_container --name client1 centos bash
