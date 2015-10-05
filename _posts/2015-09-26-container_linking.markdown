@@ -9,6 +9,7 @@ archive: false
 When inter container communication (icc) is enabled with Docker, containers on the same host can be linked together to work as unit. 
 
 Let's say we want to build app which requires a Database and Web server, we can :-
+
 - put both of them in one container
 - put them a different container but on same system
 - put them on different systems in different systems, in the same cluster
