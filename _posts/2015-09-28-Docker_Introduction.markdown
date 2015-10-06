@@ -21,21 +21,21 @@ I am covering some of the basics here. More details can be found in the free sam
 
 
 #### Namespaces
-- *pid*
-- *net*
-- *ipc*
-- *mnt*
-- *uts*
-- *user*
+- `pid`
+- `net`
+- `ipc`
+- `mnt`
+- `uts`
+- `user`
 
 #### CGroups
 For resource limitations and accounting for container SELinux/AppArmor
 
 #### Union File-System
-- *AUFS*
-- *btrfs*
-- *vfs*
-- *Device Mapper*
+- `AUFS`
+- `btrfs`
+- `vfs`
+- `Device Mapper`
 
 
 ### Docker Architecture

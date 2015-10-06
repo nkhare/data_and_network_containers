@@ -6,7 +6,7 @@ archive: false
 title: Volumes
 ---
 
-In this section we are going to look *Data Volumes* and *Data Volume Containers*, which allows contaiers to have external storage. There are two primary ways to mannage data for containers:-   
+In this section we are going to look `Data Volumes` and `Data Volume Containers`, which allows contaiers to have external storage. There are two primary ways to mannage data for containers:-   
 
 ###  Data Volumes
 
@@ -42,7 +42,7 @@ docker inspect -f "{{ .Mounts }}" centos2
 
 ### Mounting host directory inside container
  
-For this demo, we would mount the host directory, inside the container in *rw* and *ro* mode.
+For this demo, we would mount the host directory, inside the container in `rw` and `ro` mode.
 
 <script type="text/javascript" src="https://asciinema.org/a/27047.js" id="asciicast-27047" async></script>
 
@@ -64,7 +64,7 @@ touch file2
 
 ## **Data Volume Containers**
 
-For this demo, we would first run a contaier with some volume (*/data*) in background. Then we would create two other contaiers and get the earlier created volume with *--volume-from* option  inside them. Once we make changes in any of the mounted end-point, it should be reflected at other mount location as well. 
+For this demo, we would first run a contaier with some volume (`/data`) in background. Then we would create two other contaiers and get the earlier created volume with `--volume-from` option  inside them. Once we make changes in any of the mounted end-point, it should be reflected at other mount location as well. 
 
 <script type="text/javascript" src="https://asciinema.org/a/27048.js" id="asciicast-27048" async  data-theme="solarized-dark"></script>
 

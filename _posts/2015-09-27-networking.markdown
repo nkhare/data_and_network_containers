@@ -10,27 +10,27 @@ In this section we are going to look at state of Networking with current Docker 
 
 ## What happens by default
 
-As soon as you start the Docker daemon, it would create a Linux Brigde (virtual Ethernet bridge) called *docker0*, that automatically forwards packets between any other network interfaces that are attached to it. As a new container would start,  Docker would create a peer of network interfaces and attach one end to the container and other to the bridge *docker0*. 
+As soon as you start the Docker daemon, it would create a Linux Brigde (virtual Ethernet bridge) called `docker0`, that automatically forwards packets between any other network interfaces that are attached to it. As a new container would start,  Docker would create a peer of network interfaces and attach one end to the container and other to the bridge `docker0`. 
 
 <script type="text/javascript" src="https://asciinema.org/a/26765.js" id="asciicast-26765" data-size="small" async  data-theme="solarized-dark"></script>
 
 Docker has some global network configuration options which effects all the containers and some per container configurtion options. Global options are passed to the Docker daemon. Some of the global configuration options are :-
 
-- *-b BRIDGE or --bridge=BRIDGE* to use custom bridge
-- *--default-gateway=IP_ADDRESS* to set the default route for containers
-- *--icc=true|false* to enable/disable container communication
+- `-b BRIDGE or --bridge=BRIDGE` to use custom bridge
+- `--default-gateway=IP_ADDRESS` to set the default route for containers
+- `--icc=true|false` to enable/disable container communication
 
 Visit [Docker Documentation](https://docs.docker.com/articles/networking/) for more details.
 
 And the per conatainer options are:-
 
-- *-h HOSTNAME or --hostname=HOSTNAME* to set the hostname for container
-- *--link=CONTAINER_NAME_or_ID:ALIAS*  to link the container with other contaiiners
-- *--net=bridge|none|container:NAME_or_ID|host* to connect the container with differnt namespaces
-- *-p SPEC or --publish=SPEC* 	to bind the container with specific port of host 
-- *-P or --publish-all=true|false* to bind all the exposed port from a container to host ports (from *ephemeral port* range)  
+- `-h HOSTNAME or --hostname=HOSTNAME` to set the hostname for container
+- `--link=CONTAINER_NAME_or_ID:ALIAS`  to link the container with other contaiiners
+- `--net=bridge|none|container:NAME_or_ID|host` to connect the container with differnt namespaces
+- `-p SPEC or --publish=SPEC` 	to bind the container with specific port of host 
+- `-P or --publish-all=true|false` to bind all the exposed port from a container to host ports (from `ephemeral port` range)  
 
-## *--net* Networking options
+## `--net` Networking options
 
 ### --net=bridge
 
@@ -63,7 +63,7 @@ $ tracepath redhat.com
 
 ### --net=host
  
-With *--net=host--* option, Docker would not create *network* namespace for the container and would share the namespace of the host.
+With `--net=host` option, Docker would not create `network` namespace for the container and would share the namespace of the host.
 
 <script type="text/javascript" src="https://asciinema.org/a/26811.js" id="asciicast-26811" async  data-theme="solarized-dark"></script>
 
@@ -77,7 +77,7 @@ $ ip a
 ~~~
 
 ### --net=container:NAME_or_ID
-With above Docker would also not create new *network* namespace of container but it would share it with other container. In [Kubernetes](http://kubernetes.io/), a pod can consist of multiple container and it uses *--net=container:NAME_or_ID* trick to share same namespace among them .
+With above Docker would also not create new `network` namespace of container but it would share it with other container. In [Kubernetes](http://kubernetes.io/), a pod can consist of multiple container and it uses `--net=container:NAME_or_ID` trick to share same namespace among them .
 
 <script type="text/javascript" src="https://asciinema.org/a/26813.js" id="asciicast-26813" async  data-theme="solarized-dark"></script>
 
@@ -92,7 +92,7 @@ $ ip a
 
 
 ### --net=none
-With *--net=none*, Docker would not create any namespace for the container. 
+With `--net=none`, Docker would not create any namespace for the container. 
 
 <script type="text/javascript" src="https://asciinema.org/a/26814.js" id="asciicast-26814" async  data-theme="solarized-dark"></script>
 
@@ -106,7 +106,7 @@ $ ip a
 
 ## Accessing the container from outside world 
 
-In case of --net=host, container can be accessed through host IP. In other cases,  if you would like to access the containers from outside, then we can a  map host port with the container port and forward the traffic from host to container using *iptables*. 
+In case of --net=host, container can be accessed through host IP. In other cases,  if you would like to access the containers from outside, then we can a  map host port with the container port and forward the traffic from host to container using `iptables`. 
 
 <script type="text/javascript" src="https://asciinema.org/a/26922.js" id="asciicast-26922" async  data-theme="solarized-dark"></script>
 
