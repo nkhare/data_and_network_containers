@@ -100,10 +100,9 @@ Now lets try to dig a bit and look at how things work in background.
 ~~~
 [root@lab-vm-1 ~] ./docker-latest network ls
 [root@lab-vm-1 ~]  cd /var/run/docker/netns/
-[root@lab-vm-1 ~] nsenter --net=1-3aa4e1aa64 ip link show
+[root@lab-vm-1 ~]  ls
+[root@lab-vm-1 ~] nsenter --net=2-3aa4e1aa64 ip link show
 [root@lab-vm-1 ~] nsenter --net=1-3aa4e1aa64 ip neigh show
-[root@lab-vm-2 ~] ./docker-latest ls
-
 [root@lab-vm-2 ~]  ./docker-latest exec -it container_node2 bash
 [root@31171f3e1da0 /]# ip a 
 [root@lab-vm-1 ~] nsenter --net=1-3aa4e1aa64  bridge fdb show
