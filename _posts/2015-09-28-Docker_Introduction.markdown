@@ -37,6 +37,7 @@ For resource limitations and accounting for container SELinux/AppArmor
 - `vfs`
 - `Device Mapper`
 
+<a href="Docker Union File system"><img src="http://blog.linoxide.com/wp-content/uploads/2015/03/docker-filesystems-busyboxrw.png" align="center" height="400" width="600" ></a>
 
 ### Docker Architecture
 <a href="Docker Architecture"><img src="https://docs.docker.com/article-img/architecture.svg" align="center" height="400" width="600" ></a>
@@ -163,4 +164,6 @@ echo  “RUN date > ~/date” >> Dockerfile
 cat Dockerfile | docker build -t centoswithdate1 -
 docker images
 ```
+
+More details about Dockerfiles can be found on [Docker Website] (https://docs.docker.com/reference/builder/)
 
