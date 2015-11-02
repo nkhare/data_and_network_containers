@@ -1,4 +1,4 @@
-name: LinuxCon 2015
+name: Docker Tutorial
 description:  Data and Network Management for Containers
 
 sass:
@@ -7,7 +7,7 @@ sass:
 
 markdown: redcarpet
 redcarpet:
-  extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+  extensions: ["no_intra_emphasis", "tables", "fenced_code_blocks", "autolink", "strikethrough", "superscript", "with_toc_data"]
 
 #url: http://127.0.0.1:4000
 url: http://nkhare.github.io/data_and_network_containers
@@ -22,4 +22,4 @@ owner:
 ga_id: #
 ga_username: #
 
-timezone: Africa/Accra
+#timezone: Africa/Accra

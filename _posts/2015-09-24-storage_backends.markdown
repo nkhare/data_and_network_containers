@@ -8,6 +8,9 @@ title: Storage Backends
 
 When we start a containier we don't copy the image (unless VFS backend is used) and while doing the IO operations inside the container, we don't modify the original image. Because we don't copy the image, starting up a container is very fast. Changes done by the comtainer is saved in a different layer. This is all done using `Copy on Write`.
 
+## Setup for Hands-on
+Please folliow the instructions mnetioned [here](http://nkhare.github.io/data_and_network_containers/Setup/) but use this [Vagrant file](https://github.com/nkhare/data_and_network_containers/blob/gh-pages/VagrantfileStorageBackends). 
+
 ## Copy On Write (CoW)
 - Implicit Sharing
  * looks like copy but its just a reference to original resource
@@ -29,7 +32,7 @@ Docker support different storage backends to save images and run containers, on 
 ```
 # pwd
 /work/docker/docker/daemon/graphdriver
-# grep -ir -A9 "priority = \[\]string" driver_linux.go 
+$ grep -ir -A9 "priority = \[\]string" driver_linux.go 
 	priority = []string{
 		"aufs",
 		"btrfs",
@@ -42,7 +45,7 @@ Docker support different storage backends to save images and run containers, on 
 
 ### On Windows
 ```
-# grep -ir -A4 "priority = \[\]string" driver_windows.go 
+$grep -ir -A4 "priority = \[\]string" driver_windows.go 
 	priority = []string{
 		"windowsfilter",
 		"windowsdiff",
@@ -52,7 +55,7 @@ Docker support different storage backends to save images and run containers, on 
 
 ### On Freebsd
 ```
-# grep -ir -A2 "priority = \[\]string" driver_freebsd.go 
+$grep -ir -A2 "priority = \[\]string" driver_freebsd.go 
 	priority = []string{
 		"zfs",
 	}
@@ -70,6 +73,8 @@ Docker support different storage backends to save images and run containers, on 
 ## [AUFS](https://github.com/docker/docker/tree/master/daemon/graphdriver/aufs)
 
 <a href="AUFS"><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/dayflower/20080714/20080714131209.png" align="center" height="200" width="300" ></a>
+
+image ref: http://cdn-ak.f.st-hatena.com/images/fotolife/d/dayflower/20080714/20080714131209.png
 
 - Not in mainline kernel 
 - CoW  works at `file level`
@@ -141,28 +146,31 @@ To get better performance we should use put Thin Provisioned volumes on real blo
 <script type="text/javascript" src="https://asciinema.org/a/29057.js" id="asciicast-29057" async></script>
 
 ```
-fdisk -l | less
-fdisk  -l /dev/sda
-pvcreate /dev/sda
-vgcreate direct-lvm /dev/sda
-lvcreate --wipesignatures y -n data direct-lvm -l 95%VG
-lvcreate --wipesignatures y -n metadata direct-lvm -l 5%VG
+$ vagrant ssh labvm-1
+$ sudo -s
+$ cd
+$ fdisk -l | less
+$ fdisk  -l /dev/sda
+$ pvcreate /dev/sda
+$ vgcreate direct-lvm /dev/sda
+$ lvcreate --wipesignatures y -n data direct-lvm -l 95%VG
+$ lvcreate --wipesignatures y -n metadata direct-lvm -l 5%VG
 
-systemctl stop docker
-rm -rf /var/lib/docker
+$ systemctl stop docker
+$ rm -rf /var/lib/docker
 
-Update /etc/sysconfig/docker-storage
+- Update /etc/sysconfig/docker-storage and change 
 DOCKER_STORAGE_OPTIONS = --storage-opt dm.metadatadev=/dev/direct-lvm/metadata --storage-opt dm.datadev=/dev/direct-lvm/data
 
-systemctl start docker
-docker info
-dmsetup table
-lsblk
-docker images
-docker run -id busybox /bin/sh
-docker ps
-dmsetup table
-lsblk
+$ systemctl start docker
+$ docker info
+$ dmsetup table
+$ lsblk
+$ docker images
+$ docker run -id busybox /bin/sh
+$ docker ps
+$ dmsetup table
+$ lsblk
 ```
 
 Configutation option for [Device Mapper](https://github.com/docker/docker/blob/master/daemon/graphdriver/devmapper/README.md):-
@@ -189,42 +197,67 @@ Configutation option for [Device Mapper](https://github.com/docker/docker/blob/m
 - Snapshot is created from a subvolume 
 - btrfs should created  on /var/lib/docker to use with Docker 
 
+<script type="text/javascript" src="https://asciinema.org/a/29121.js" id="asciicast-29121" async></script>
+
 ```
-fdisk -l | less
-fdisk  -l /dev/sda
-yum install -y btrfs-progs btrfs-progs-devel
-mkfs.btrfs -f /dev/sda
-echo "/dev/sda /var/lib/docker btrfs defaults 0 0" >> /etc/fstab
-mount -a
-btrfs filesystem show /var/lib/docker
-screen 
-docker daemon -s btrfs
-docker pull busybox
-btrfs subvolume list /var/lib/docker
-docker run -id  busybox /bin/sh
-btrfs subvolume list /var/lib/docker
+$  vagrant ssh labvm-1
+$ sudo -s
+$ cd
+$ systemctl stop docker
+$ fdisk -l | less
+$ fdisk  -l /dev/sda
+$ yum install -y btrfs-progs btrfs-progs-devel
+$ mkfs.btrfs -f /dev/sda$
+$ echo "/dev/sda /var/lib/docker btrfs defaults 0 0" >> /etc/fstab
+$ mount -a
+$ btrfs filesystem show /var/lib/docker
+$ screen 
+$ docker daemon -s btrfs
+$ docker pull busybox
+$ btrfs subvolume list /var/lib/docker
+$ docker run -id  busybox /bin/sh
+$ btrfs subvolume list /var/lib/docker
 ```
 
 
 ## [Overlay](https://github.com/docker/docker/tree/master/daemon/graphdriver/overlay)
 <a href="AUFS"><img src="http://www.blaess.fr/christophe/wp-content/uploads/2014/12/overlayfs.png" align="center" height="200" width="300" ></a>
 
+image ref. : http://cdn-ak.f.st-hatena.com/images/fotolife/d/dayflower/20080714/20080714131209.png
+
 - Written to do filesystem virualization
 - In main line kernel
 - Works at file	level
 - Shares the page cache, when files are open in read only in upper layer.
 
-Lower Layer
-Upper Layer
-Workdir
-Overlay layer (switch)
+Overlay has 3 layes 
+- Lower Layer
+- Upper Layer
+- Overlay layer (switch)
 
-mount 
+and a *Workdir* to do temporary operation. To mount an *overlay*  filesystem, you 
+would need to run following command:-
 
+```
+mount -t overlay /mnt \
+      -o lowerdir=/lower,\
+         upperdir=/storage/upper,\
+         workdir=/storage/work
+```
+
+How overlay works :-
 - User interface is pathwalk 
 - Works by path co-incidence
 - Overlay layer switches  between layer
 - Lower layer copied up on change
+
+To use `Overlay` with Docker
+
+```
+$ systemctl stop docker
+$ rm -rf /var/lib/docker
+$ docker daemon -s overlay
+```
 
 ## [ZFS](https://github.com/docker/docker/tree/master/daemon/graphdriver/zfs)
 - Docker recently added support for ZFS storage driver
@@ -234,6 +267,37 @@ mount
 ## [VFS](https://github.com/docker/docker/tree/master/daemon/graphdriver/vfs)
 - No copy on write, so Docker would need to do full copy
 - Without CoW, it is very slow
+
+
+Let's see how much time it takes to start a container with CoW  based backend
+
+```
+[root@lab-vm-1 vagrant]# time docker run -id centos bash
+c5f9ec7ac1c00bd4956ddb2c5655a9a91891bbd95c64abd2aac633401d6b139b
+
+real	0m0.260s
+user	0m0.009s
+sys	0m0.003s
+```
+
+Now let's use VFS as Docker storage backend and start the container
+
+```
+$ systemctl stop docker
+$ rm -rf /var/lib/docker
+$ docker daemon -s vfs
+$ docker pull centos
+$ [root@lab-vm-1 vagrant]# time docker run -id centos bash
+4ac88a0cf5d6c5ededd9734c2dc5c887b04ac5907a38cc3ef10df3e8aee65ab7
+
+real    0m2.990s
+user    0m0.010s
+sys     0m0.003s
+```
+
+As you can see if CoW  based backed it took just `0.260 sec` but with 
+VFS it took `2.9 sec`
+
 
 ## Links
 - https://jpetazzo.github.io/assets/2015-07-01-deep-dive-into-docker-storage-drivers.html
